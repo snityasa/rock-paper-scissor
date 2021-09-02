@@ -22,32 +22,64 @@ function play(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    for (var i = 0; i<5; i++) {
-        let playerSelection = (prompt("Rock, paper, scissor?")).toLowerCase();
-        let computerSelection = computerPlay();
+function game(playerSelection) {
+    let computerSelection = computerPlay();
 
-        if (play(playerSelection, computerSelection) == 1) {
-            comp++;
-            console.log("You lost");
-        } else if (play(playerSelection, computerSelection) == 2) {
-            player++;
-            console.log("You won");
+    if (play(playerSelection, computerSelection) == 1) {
+        comp++;
+        alert("You lost");
+    } else if (play(playerSelection, computerSelection) == 2) {
+        player++;
+        alert("You won");
+    } else {
+        alert("Tie");
+    }
+
+    updateScore(player, comp);
+}
+
+function updateScore(player, comp){
+    const $score = document.querySelector('#score  p');
+    $score.innerText = `Player: ${player} Computer: ${comp}`;
+    if(player === 5 || comp === 5){
+        if (player === 5) {
+            alert("You are the champion!");
         } else {
-            console.log("Tie");
+            alert("Loser");
         }
     }
 }
 
-game();
+//game();
 // console.log(player);
 // console.log(comp);
-if (comp == player) {
-    console.log("tie");
-} else if (comp > player) {
-    console.log("you lost");
-} else {
-    console.log("you won");
-}
 
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    game("rock");
+    console.log("rock");
+});
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    game("paper");
+    console.log("paper");
+});
+
+const scissor = document.querySelector('#scissor');
+scissor.addEventListener('click', () => {
+    game("scissor");
+    console.log("scissor");
+});
+
+
+/*
+if (comp == player) {
+    alert("tie");
+} else if (comp > player) {
+    alert("you lost");
+} else {
+    alert("you won");
+}
+*/
 
